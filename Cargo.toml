@@ -1,0 +1,28 @@
+[package]
+name = "pdfmill"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = { version = "0.7", features = ["multipart"] }
+tokio = { version = "1", features = ["full"] }
+tower = "0.4"
+tower-http = { version = "0.5", features = ["trace", "cors"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+mime = "0.3"
+mime_guess = "2.0"
+tempfile = "3.8"
+thiserror = "1.0"
+anyhow = "1.0"
+uuid = { version = "1.6", features = ["v4"] }
+bytes = "1.5"
+async-trait = "0.1"
+chromiumoxide = { version = "0.7", features = ["tokio-runtime"] }
+futures = "0.3"
+base64 = "0.22"
+
+[dev-dependencies]
+reqwest = { version = "0.11", features = ["multipart"] }

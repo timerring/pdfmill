@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  pdfmill:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pdfmill
+    ports:
+      - "3000:3000"
+    environment:
+      - RUST_LOG=pdfmill=info
+      - PDFMILL_ADDR=0.0.0.0:3000
+      # Optional: Custom engine paths
+      # - CHROME_PATH=/usr/bin/chromium
+      # - SOFFICE_PATH=/usr/bin/soffice
+      # - CONVERT_PATH=/usr/bin/convert
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    # Resource limits (optional but recommended)
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    # Optional: mount volume for temporary files
+    volumes:
+      - pdfmill-tmp:/tmp/pdfmill
+    # Optional: add logging
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  pdfmill-tmp:
