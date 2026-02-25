@@ -4,6 +4,7 @@ mod handlers;
 mod router;
 
 use axum::{
+    extract::DefaultBodyLimit,
     routing::{get, post},
     Router,
 };
@@ -43,6 +44,7 @@ async fn main() {
         .route("/health", get(health_handler))
         .route("/info", get(info_handler))
         .route("/", get(info_handler))
+        .layer(DefaultBodyLimit::max(200 * 1024 * 1024)) // 200MB
         .layer(TraceLayer::new_for_http())
         .layer(cors)
         .with_state(state);

@@ -36,6 +36,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libreoffice-impress \
     # ImageMagick for image conversion
     imagemagick \
+    librsvg2-bin \
     # Additional dependencies
     fonts-liberation \
     fonts-noto-cjk \

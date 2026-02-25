@@ -6,7 +6,7 @@ use std::process::Stdio;
 use tokio::process::Command;
 use tracing::info;
 
-const SUPPORTED_EXTENSIONS: &[&str] = &["jpg", "jpeg", "png", "gif", "bmp", "tiff", "tif", "webp"];
+const SUPPORTED_EXTENSIONS: &[&str] = &["jpg", "jpeg", "png", "gif", "bmp", "tiff", "tif", "webp", "heic", "heif", "ico", "svg"];
 
 pub struct ImageEngine {
     /// Path to ImageMagick convert executable
